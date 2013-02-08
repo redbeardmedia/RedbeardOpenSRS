@@ -12,7 +12,6 @@ class Test
 		$path					=	"/";
 		$port					=	55443;
 		
-		
 		$username				=	"";
 
 //		Live Data
