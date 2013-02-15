@@ -1,5 +1,5 @@
 <?php
-namespace RbmOpensrs;
+namespace RedbeardOpenSRS;
 
 class Domain
 {
