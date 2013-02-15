@@ -60,7 +60,7 @@ class Object
 	
 	public static function addItem($parent, $key)
 	{
-		$item = new \DOMElement('item', $value);
+		$item = new \DOMElement('item');
 		$item = $parent->appendChild($item);
 		$item->setAttribute('key', $key);
 		
@@ -70,7 +70,7 @@ class Object
 
 	public static function addItemArray($parent, $key)
 	{
-		$item = new \DOMElement('item', $value);
+		$item = new \DOMElement('item');
 		$item = $parent->appendChild($item);
 		$item->setAttribute('key', $key);
 		
