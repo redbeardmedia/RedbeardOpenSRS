@@ -19,9 +19,6 @@ class Connection
 		curl_setopt($curl_connection, CURLOPT_SSL_VERIFYPEER, false);
 		curl_setopt($curl_connection, CURLOPT_POST, true); 
 		
-// 		curl_setopt($curl_connection, CURLOPT_FOLLOWLOCATION, 1);
-		//curl_setopt($curl_connection, CURLOPT_POST, true);
-		
 		$headers = array();
 		$headers[] = "Content-Type: text/xml";
 		$headers[] = "X-Username: ".$config['redbeardopensrs']['username'];
@@ -34,7 +31,6 @@ class Connection
  		$result = curl_exec($curl_connection);
  		if($result === false)
  		{
- 			//echo 'Curl error: ' . curl_error($curl_connection);
  			
  		}
 		

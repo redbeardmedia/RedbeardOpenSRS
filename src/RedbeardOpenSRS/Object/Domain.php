@@ -20,8 +20,8 @@ class Domain extends \RedbeardOpenSRS\Object
 		parent::addSimpleItem($parent, "period", '1');
 		parent::addSimpleItem($parent, "reg_type", 'new');
 		parent::addSimpleItem($parent, "comments", 'No comment');
-		parent::addSimpleItem($parent, "reg_username", 'dmn_username');
-		parent::addSimpleItem($parent, "reg_password", 'dmn_password');
+		parent::addSimpleItem($parent, "reg_username", 'username');
+		parent::addSimpleItem($parent, "reg_password", 'password');
 		parent::addSimpleItem($parent, "custom_tech_contact", '0');
 		parent::addSimpleItem($parent, "custom_nameservers", '1');
 		
