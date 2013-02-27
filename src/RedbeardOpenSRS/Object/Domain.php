@@ -4,7 +4,7 @@ namespace RedbeardOpenSRS\Object;
 class Domain extends \RedbeardOpenSRS\Object
 {
 	
-	public static function Register($domain, $nameservers)
+	public static function Register($domain, $nameservers, $contacts)
 	{
 		parent::setDefaultObject("XCP", "DOMAIN", "SW_REGISTER");
 		$parent = parent::$attributes;
@@ -28,39 +28,79 @@ class Domain extends \RedbeardOpenSRS\Object
 
 		// Contacts
 		$contactElement = parent::addItem($parent, "contact_set");
-		// Owner
+		// Owner'
+			$owner = $contacts['owner'];
+		
 			$ownerElement = parent::addItem($contactElement, 'owner');
-				parent::addSimpleItem($ownerElement, 'first_name', 'First');
-				parent::addSimpleItem($ownerElement, 'last_name', 'and Last');
-				parent::addSimpleItem($ownerElement, 'org_name', 'First and Last co');
-				parent::addSimpleItem($ownerElement, 'address1', 'Address 1234');
-				parent::addSimpleItem($ownerElement, 'postal_code', '1882AB');
-				parent::addSimpleItem($ownerElement, 'city', 'Lutjebroek');
-				parent::addSimpleItem($ownerElement, 'country', 'NL');
-				parent::addSimpleItem($ownerElement, 'phone', '+31.165121120');
-				parent::addSimpleItem($ownerElement, 'email', 'email@address.net');
+				parent::addSimpleItem($ownerElement, 'first_name', 		$owner->firstname);
+				parent::addSimpleItem($ownerElement, 'last_name', 		$owner->lastname);
+				parent::addSimpleItem($ownerElement, 'org_name', 		$owner->organisation);
+				parent::addSimpleItem($ownerElement, 'address1', 		$owner->address1);
+				if($owner->address2 != "")
+				{
+					parent::addSimpleItem($ownerElement, 'address2', 		$owner->address2);
+				}
+				if($owner->address3 != "")
+				{
+					parent::addSimpleItem($ownerElement, 'address3', 		$owner->address3);
+				}
+				parent::addSimpleItem($ownerElement, 'postal_code', 	$owner->postcode);
+				parent::addSimpleItem($ownerElement, 'city', 			$owner->city);
+				parent::addSimpleItem($ownerElement, 'country', 		$owner->country);
+				parent::addSimpleItem($ownerElement, 'phone', 			$owner->phone);
+				if($owner->fax != "")
+				{
+					parent::addSimpleItem($ownerElement, 'fax', 		$owner->fax);
+				}
+				parent::addSimpleItem($ownerElement, 'email', 			$owner->emailaddress);
 				
+			$admin = $contacts['administrative'];
 			$adminElement = parent::addItem($contactElement, 'admin');
-				parent::addSimpleItem($adminElement, 'first_name', 'First');
-				parent::addSimpleItem($adminElement, 'last_name', 'and Last');
-				parent::addSimpleItem($adminElement, 'org_name', 'First and Last co');
-				parent::addSimpleItem($adminElement, 'address1', 'Address 1234');
-				parent::addSimpleItem($adminElement, 'postal_code', '1882AB');
-				parent::addSimpleItem($adminElement, 'city', 'Lutjebroek');
-				parent::addSimpleItem($adminElement, 'country', 'NL');
-				parent::addSimpleItem($adminElement, 'phone', '+31.165121120');
-				parent::addSimpleItem($adminElement, 'email', 'email@address.net');
+				parent::addSimpleItem($adminElement, 'first_name', 		$admin->firstname);
+				parent::addSimpleItem($adminElement, 'last_name', 		$admin->lastname);
+				parent::addSimpleItem($adminElement, 'org_name', 		$admin->organisation);
+				parent::addSimpleItem($adminElement, 'address1', 		$admin->address1);
+				if($admin->address2 != "")
+				{
+					parent::addSimpleItem($adminElement, 'address2', 		$admin->address2);
+				}
+				if($admin->address3 != "")
+				{
+					parent::addSimpleItem($adminElement, 'address3', 		$admin->address3);
+				}
+				parent::addSimpleItem($adminElement, 'postal_code', 	$admin->postcode);
+				parent::addSimpleItem($adminElement, 'city', 			$admin->city);
+				parent::addSimpleItem($adminElement, 'country', 		$admin->country);
+				parent::addSimpleItem($adminElement, 'phone', 			$admin->phone);
+				if($admin->fax != "")
+				{
+					parent::addSimpleItem($adminElement, 'fax', 		$admin->fax);
+				}
+				parent::addSimpleItem($adminElement, 'email', 			$admin->emailaddress);
 				
+			$billing = $contacts['billing'];
 			$billingElement = parent::addItem($contactElement, 'billing');
-				parent::addSimpleItem($billingElement, 'first_name', 'First');
-				parent::addSimpleItem($billingElement, 'last_name', 'and Last');
-				parent::addSimpleItem($billingElement, 'org_name', 'First and Last co');
-				parent::addSimpleItem($billingElement, 'address1', 'Address 1234');
-				parent::addSimpleItem($billingElement, 'postal_code', '1882AB');
-				parent::addSimpleItem($billingElement, 'city', 'Lutjebroek');
-				parent::addSimpleItem($billingElement, 'country', 'NL');
-				parent::addSimpleItem($billingElement, 'phone', '+31.165121120');
-				parent::addSimpleItem($billingElement, 'email', 'email@address.net');
+				parent::addSimpleItem($billingElement, 'first_name', 		$billing->firstname);
+				parent::addSimpleItem($billingElement, 'last_name', 		$billing->lastname);
+				parent::addSimpleItem($billingElement, 'org_name', 		$billing->organisation);
+				parent::addSimpleItem($billingElement, 'address1', 		$billing->address1);
+				if($admin->address2 != "")
+				{
+					parent::addSimpleItem($billingElement, 'address2', 		$billing->address2);
+				}
+				if($admin->address3 != "")
+				{
+					parent::addSimpleItem($billingElement, 'address3', 		$billing->address3);
+				}
+				parent::addSimpleItem($billingElement, 'postal_code', 	$billing->postcode);
+				parent::addSimpleItem($billingElement, 'city', 			$billing->city);
+				parent::addSimpleItem($billingElement, 'country', 		$billing->country);
+				parent::addSimpleItem($billingElement, 'phone', 			$billing->phone);
+				if($admin->fax != "")
+				{
+					parent::addSimpleItem($billingElement, 'fax', 		$billing->fax);
+				}
+				parent::addSimpleItem($billingElement, 'email', 			$billing->emailaddress);
 				
 		
 		// Nameservers
@@ -78,7 +118,7 @@ class Domain extends \RedbeardOpenSRS\Object
 		parent::addSimpleItem($parent, "encoding_type");
 		
 		$xml = parent::$doc->saveXML();
-		// return $xml;
+
 		return \RedbeardOpenSRS\Connection::Call($xml);
 	}
 	
