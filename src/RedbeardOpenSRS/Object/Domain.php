@@ -22,8 +22,10 @@ class Domain extends \RedbeardOpenSRS\Object
 		parent::addSimpleItem($parent, "comments", 'No comment');
 		parent::addSimpleItem($parent, "reg_username", 'username');
 		parent::addSimpleItem($parent, "reg_password", 'password');
-		parent::addSimpleItem($parent, "custom_tech_contact", '0');
+		parent::addSimpleItem($parent, "custom_tech_contact", '1');
 		parent::addSimpleItem($parent, "custom_nameservers", '1');
+		parent::addSimpleItem($parent, "handle", 'process');
+		
 		
 
 		// Contacts
@@ -102,6 +104,29 @@ class Domain extends \RedbeardOpenSRS\Object
 				}
 				parent::addSimpleItem($billingElement, 'email', 			$billing->emailaddress);
 				
+			$tech = $contacts['technical'];
+			$techElement = parent::addItem($contactElement, 'tech');
+				parent::addSimpleItem($techElement, 'first_name', 		$tech->firstname);
+				parent::addSimpleItem($techElement, 'last_name', 		$tech->lastname);
+				parent::addSimpleItem($techElement, 'org_name', 		$tech->organisation);
+				parent::addSimpleItem($techElement, 'address1', 		$tech->address1);
+				if($tech->address2 != "")
+				{
+					parent::addSimpleItem($techElement, 'address2', 		$tech->address2);
+				}
+				if($tech->address3 != "")
+				{
+					parent::addSimpleItem($techElement, 'address3', 		$tech->address3);
+				}
+				parent::addSimpleItem($techElement, 'postal_code', 		$tech->postcode);
+				parent::addSimpleItem($techElement, 'city', 			$tech->city);
+				parent::addSimpleItem($techElement, 'country', 			$tech->country);
+				parent::addSimpleItem($techElement, 'phone', 			$tech->phone);
+				if($tech->fax != "")
+				{
+					parent::addSimpleItem($techElement, 'fax', 			$tech->fax);
+				}
+				parent::addSimpleItem($techElement, 'email', 			$tech->emailaddress);
 		
 		// Nameservers
 		$nameserverElement = parent::addItemArray($parent, "nameserver_list");
@@ -118,8 +143,36 @@ class Domain extends \RedbeardOpenSRS\Object
 		parent::addSimpleItem($parent, "encoding_type");
 		
 		$xml = parent::$doc->saveXML();
+		$response = \RedbeardOpenSRS\Connection::Call($xml);
 
-		return \RedbeardOpenSRS\Connection::Call($xml);
+		$responseXml = simplexml_load_string($response);
+		$success = false;
+		foreach($responseXml->body->data_block->dt_assoc->item as $item)
+		{
+			switch($item['key'])
+			{
+				case "is_success":
+					if($item == 1)
+					{
+						$success = true;
+						// Auto Process
+						
+					}
+					break;
+					
+				case "response_text":
+					$response_text = (string)$item;
+					break;
+					
+				default:
+					
+					break;
+			}
+		}
+		
+		
+
+		return array("request" => $xml, "response" => $response, "success" => $success, "response_text" => $response_text);
 	}
 	
 }
