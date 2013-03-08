@@ -1,0 +1,24 @@
+{
+    "name": "redbeardmedia/redbeardopensrs",
+    "description": "Use the Redbeard OpenSRS module to enable usage of the extended OpenSRS Api",
+    "type": "library",
+    "keywords": [
+        "zf2"
+    ],
+    "homepage": "https://github.com/redbeardmedia/RedbeardOpenSRS",
+    "authors": [
+        {
+            "name": "Redbeard Media",
+            "email": "info@redbeardmedia.nl"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "zendframework/zendframework": "2.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "RedbeardOpenSRS": "src/"
+        }
+    }
+}
